@@ -1,49 +1,48 @@
-﻿using HarmonyLib;
+﻿using System;
+using HarmonyLib;
 using LabApi.Events.Handlers;
 using LabApi.Features;
 using LabApi.Loader.Features.Plugins;
-using System;
 
-namespace Lobby
+namespace Lobby;
+
+public class Lobby : Plugin<Config>
 {
-    public class Lobby : Plugin<Config>
+    public static Lobby Instance { get; private set; }
+
+    public override string Name => "Lobby";
+
+    public override string Description => "A plugin that adds a lobby when waiting for players.";
+
+    public override string Author => "MrAfitol & MedveMarci";
+
+    public override Version Version { get; } = new(1, 0, 0);
+
+    public override Version RequiredApiVersion { get; } = new(LabApiProperties.CompiledVersion);
+
+    public Harmony Harmony { get; private set; }
+
+    private EventsHandler EventsHandler { get; set; }
+    public RestrictionsHandler RestrictionsHandler { get; private set; }
+
+    public override void Enable()
     {
-        public static Lobby Instance { get; private set; }
+        Instance = this;
+        Harmony = new Harmony("lobby.scp.sl");
+        EventsHandler = new EventsHandler();
+        RestrictionsHandler = new RestrictionsHandler();
+        ServerEvents.WaitingForPlayers += EventsHandler.OnWaitingForPlayers;
+        ServerEvents.RoundStarted += EventsHandler.OnRoundStarted;
+    }
 
-        public override string Name { get; } = "Lobby";
-
-        public override string Description { get; } = "A plugin that adds a lobby when waiting for players.";
-
-        public override string Author { get; } = "MrAfitol";
-
-        public override Version Version { get; } = new Version(1, 6, 2);
-
-        public override Version RequiredApiVersion { get; } = new Version(LabApiProperties.CompiledVersion);
-
-        public Harmony Harmony { get; private set; }
-
-        public EventsHandler EventsHandler { get; private set; }
-        public RestrictionsHandler RestrictionsHandler { get; private set; }
-
-        public override void Enable()
-        {
-            Instance = this;
-            Harmony = new Harmony("lobby.scp.sl");
-            EventsHandler = new EventsHandler();
-            RestrictionsHandler = new RestrictionsHandler();
-            ServerEvents.WaitingForPlayers += EventsHandler.OnWaitingForPlayers;
-            ServerEvents.RoundStarted += EventsHandler.OnRoundStarted;
-        }
-
-        public override void Disable()
-        {
-            ServerEvents.WaitingForPlayers -= EventsHandler.OnWaitingForPlayers;
-            ServerEvents.RoundStarted -= EventsHandler.OnRoundStarted;
-            EventsHandler.UnregisterHandlers();
-            RestrictionsHandler = null;
-            EventsHandler = null;
-            Harmony = null;
-            Instance = null;
-        }
+    public override void Disable()
+    {
+        ServerEvents.WaitingForPlayers -= EventsHandler.OnWaitingForPlayers;
+        ServerEvents.RoundStarted -= EventsHandler.OnRoundStarted;
+        EventsHandler.UnregisterHandlers();
+        RestrictionsHandler = null;
+        EventsHandler = null;
+        Harmony = null;
+        Instance = null;
     }
 }

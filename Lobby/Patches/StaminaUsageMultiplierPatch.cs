@@ -1,15 +1,14 @@
 ﻿using HarmonyLib;
 using InventorySystem;
 
-namespace Lobby.Patches
+namespace Lobby.Patches;
+
+[HarmonyPatch(typeof(Inventory), nameof(Inventory.StaminaUsageMultiplier), MethodType.Getter)]
+public class StaminaUsageMultiplierPatch
 {
-    [HarmonyPatch(typeof(Inventory), nameof(Inventory.StaminaUsageMultiplier), MethodType.Getter)]
-    public class StaminaUsageMultiplierPatch
+    private static void Postfix(Inventory __instance, ref float __result)
     {
-        private static void Postfix(Inventory __instance, ref float __result)
-        {
-            if (Lobby.Instance.Config.InfinityStamina && EventsHandler.IsLobby)
-                __result = 0;
-        }
+        if (Lobby.Instance.Config.InfinityStamina && EventsHandler.IsLobby)
+            __result = 0;
     }
 }
