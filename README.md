@@ -1,11 +1,13 @@
 # Lobby
-[![Version](https://img.shields.io/github/v/release/MrAfitol/Lobby?sort=semver&style=flat-square&color=blue&label=Version)](https://github.com/MrAfitol/Lobby/releases)
-[![Downloads](https://img.shields.io/github/downloads/MrAfitol/Lobby/total?style=flat-square&color=yellow&label=Downloads)](https://github.com/MrAfitol/Lobby/releases)
+[![Version](https://img.shields.io/github/v/release/MedveMarci/Lobby?sort=semver&label=Version)](https://github.com/MedveMarci/Lobby/releases)
+[![Downloads](https://img.shields.io/github/downloads/MedveMarci/Lobby/total?label=Downloads)](https://github.com/MedveMarci/Lobby/releases)
+<a href="https://github.com/KenleyundLeon/DeltaPatch"><img src="https://image2url.com/images/1759565889245-ff2e02c2-1f19-4f72-bc06-43a3b77fb4bd.png"></a>
 
-
-A plugin that adds a lobby when waiting for players.
+An SCP: Secret Laboratory plugin which adds a lobby when waiting for players.
 
 The idea was inspired from this [plugin](https://github.com/Michal78900/WaitAndChillReborn).
+
+Original plugin: https://github.com/MrAfitol/Lobby/
 ## How to download?
    - *1. Find the SCP SL server config folder*
    
@@ -14,10 +16,6 @@ The idea was inspired from this [plugin](https://github.com/Michal78900/WaitAndC
    - *2. Find the "PluginAPI" folder there, it contains the "plugins" folder.*
   
    - *3. Select either the port of your server to install the same on that server or the "global" folder to install the plugin for all servers*
-  
-  ***Or***
-  
-   - *Run the command in console `p install MrAfitol/Lobby`*
   
 ## View
 https://user-images.githubusercontent.com/76150070/208076431-7e7a98e3-d1b3-4365-a989-a09e7fa7f639.mp4
