@@ -7,21 +7,22 @@ using System.Threading.Tasks;
 
 namespace Lobby;
 
-public class VersionManager
+public static class VersionManager
 {
     private const bool PreRelease = false;
-
+    
     internal static async Task CheckForUpdatesAsync(Version currentVersion)
     {
         try
         {
+            var name = Lobby.Instance.Name;
             ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls12;
 
             using var client = new HttpClient();
-            client.DefaultRequestHeaders.UserAgent.ParseAdd($"{Lobby.Instance.Name}/{currentVersion}");
+            client.DefaultRequestHeaders.UserAgent.ParseAdd($"{name}/{currentVersion}");
             client.DefaultRequestHeaders.Accept.ParseAdd("application/vnd.github+json");
 
-            var repo = $"MedveMarci/{Lobby.Instance.Name}";
+            var repo = $"MedveMarci/{name}";
             var latestStableJson = await client.GetStringAsync($"https://api.github.com/repos/{repo}/releases/latest")
                 .ConfigureAwait(false);
             var allReleasesJson = await client
@@ -43,8 +44,7 @@ public class VersionManager
             if (allReleasesDoc.RootElement.ValueKind == JsonValueKind.Array)
             {
                 DateTime? bestPublishedAt = null;
-                foreach (var rel in allReleasesDoc.RootElement.EnumerateArray()
-                             .Where(rel => rel.ValueKind == JsonValueKind.Object))
+                foreach (var rel in allReleasesDoc.RootElement.EnumerateArray().Where(rel => rel.ValueKind == JsonValueKind.Object))
                 {
                     var draft = rel.TryGetProperty("draft", out var draftProp) &&
                                 draftProp.ValueKind == JsonValueKind.True;
@@ -80,18 +80,67 @@ public class VersionManager
             var outdatedStable = stableVer != null && stableVer > currentVersion;
             var prereleaseNewer = preVer != null && preVer > currentVersion && !outdatedStable;
 
+            Version latestRemoteVersion = null;
+            string latestRemoteTag = null;
+
+            if (!PreRelease)
+            {
+                if (stableVer != null)
+                {
+                    latestRemoteVersion = stableVer;
+                    latestRemoteTag = stableTag;
+                }
+            }
+            else
+            {
+                if (stableVer != null && preVer != null)
+                {
+                    if (preVer > stableVer)
+                    {
+                        latestRemoteVersion = preVer;
+                        latestRemoteTag = preTag;
+                    }
+                    else
+                    {
+                        latestRemoteVersion = stableVer;
+                        latestRemoteTag = stableTag;
+                    }
+                }
+                else if (preVer != null)
+                {
+                    latestRemoteVersion = preVer;
+                    latestRemoteTag = preTag;
+                }
+                else if (stableVer != null)
+                {
+                    latestRemoteVersion = stableVer;
+                    latestRemoteTag = stableTag;
+                }
+            }
+
+            var currentIsNewerThanRemote = latestRemoteVersion != null && currentVersion > latestRemoteVersion;
+
             if (outdatedStable)
                 LogManager.Info(
-                    $"A new {Lobby.Instance.Name} version is available: {stableTag} (current {currentVersion}). Download: https://github.com/MedveMarci/{Lobby.Instance.Name}/releases/latest",
+                    $"A new {name} version is available: {stableTag} (current {currentVersion}). Download: https://github.com/MedveMarci/{name}/releases/latest",
                     ConsoleColor.DarkRed);
             else if (prereleaseNewer)
                 LogManager.Info(
-                    $"A newer pre-release is available: {preTag} (current {currentVersion}). Download: https://github.com/MedveMarci/{Lobby.Instance.Name}/releases/tag/{preTag}",
+                    $"A newer pre-release is available: {preTag} (current {currentVersion}). Download: https://github.com/MedveMarci/{name}/releases/tag/{preTag}",
                     ConsoleColor.DarkYellow);
             else
                 LogManager.Info(
-                    $"Thanks for using {Lobby.Instance.Name} v{currentVersion}. To get support and latest news, join to my Discord Server: https://discord.gg/KmpA8cfaSA",
+                    $"Thanks for using {name} v{currentVersion}. To get support and latest news, join to my Discord Server: https://discord.gg/KmpA8cfaSA",
                     ConsoleColor.Blue);
+
+            if (currentIsNewerThanRemote)
+            {
+                var remoteLabel = string.IsNullOrWhiteSpace(latestRemoteTag) ? "the latest GitHub release" : latestRemoteTag;
+                LogManager.Info(
+                    $"You are running a newer version ({currentVersion}) than {remoteLabel} on GitHub. This is a development build and 100% that it contains errors or bugs.",
+                    ConsoleColor.DarkMagenta);
+            }
+
             if (PreRelease)
                 LogManager.Info(
                     "This is a pre-release version. There might be bugs, if you find one, please report it on GitHub or Discord.",

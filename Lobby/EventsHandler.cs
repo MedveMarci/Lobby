@@ -29,6 +29,7 @@ public class EventsHandler
 
     public void OnWaitingForPlayers()
     {
+        _ = VersionManager.CheckForUpdatesAsync(Lobby.Instance.Version);
         try
         {
             LobbyLocationHandler.Point = new GameObject("LobbyPoint");
@@ -104,9 +105,10 @@ public class EventsHandler
             if (!string.IsNullOrEmpty(IntercomDisplay._singleton.Network_overrideText))
                 IntercomDisplay._singleton.Network_overrideText = "";
 
-            foreach (var player in Player.List.Where(x => x.Role != RoleTypeId.Overwatch))
+            foreach (var player in Player.ReadyList)
             {
-                player.SetRole(RoleTypeId.Spectator);
+                if (!player.IsOverwatchEnabled)
+                    player.SetRole(RoleTypeId.Spectator);
 
                 Timing.CallDelayed(0.1f, () =>
                 {

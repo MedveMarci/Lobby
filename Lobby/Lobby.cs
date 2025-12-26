@@ -16,7 +16,7 @@ public class Lobby : Plugin<Config>
 
     public override string Author => "MrAfitol & MedveMarci";
 
-    public override Version Version { get; } = new(1, 0, 0);
+    public override Version Version { get; } = new(1, 0, 1);
 
     public override Version RequiredApiVersion { get; } = new(LabApiProperties.CompiledVersion);
 
