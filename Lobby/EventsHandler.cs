@@ -288,7 +288,7 @@ public class EventsHandler
                 foreach (var ply in Player.List)
                     if (ply.ReferenceHub.Mode != ClientInstanceMode.Unverified &&
                         ply.ReferenceHub.Mode != ClientInstanceMode.DedicatedServer && ply != null)
-                        ply.SendHint(text, 1.05f);
+                        ply.SendBroadcast(text, (ushort)1.25, Broadcast.BroadcastFlags.Normal, true);
             }
             else
             {
