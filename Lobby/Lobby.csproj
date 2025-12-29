@@ -134,4 +134,7 @@
     </ItemGroup>
     <ItemGroup/>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
+    <Target Name="AfterBuild">
+        <Exec Command="xcopy &quot;$(TargetPath)&quot; &quot;%appdata%\SCP Secret Laboratory\LabAPI\plugins\global&quot; /y"/>
+    </Target>
 </Project>
