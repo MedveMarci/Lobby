@@ -29,6 +29,10 @@ https://user-images.githubusercontent.com/76150070/208076431-7e7a98e3-d1b3-4365-
 ## Config
 
 ```yml
+# Enable or disable the Lobby plugin
+debug: true
+# Use hints instead of broadcast?
+use_hints: Lobby
 # Main text ({seconds} - Either it shows how much is left until the start, or the server status is "Server is suspended", "Round starting", <rainbow> - Change the next text a rainbow color, </rainbow> - Close a rainbow color tag)
 title_text: <color=#F0FF00><b>Waiting for players, {seconds}</b></color>
 # Text showing the number of players ({players} - Text with the number of players, <rainbow> - Change the next text a rainbow color, </rainbow> - Close a rainbow color tag)

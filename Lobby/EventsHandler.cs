@@ -45,6 +45,7 @@ public class EventsHandler
 
             Timing.CallDelayed(0.1f, () =>
             {
+                LogManager.Debug($"Found StartRound GameObject: {GameObject.Find("StartRound") != null}");
                 GameObject.Find("StartRound").transform.localScale = Vector3.zero;
                 LogManager.Debug($"LobbyTimer: {_lobbyTimer.IsRunning} | RainbowColor: {_rainbowColor.IsRunning}");
                 if (_lobbyTimer.IsRunning)
@@ -296,7 +297,12 @@ public class EventsHandler
                 foreach (var ply in Player.List)
                     if (ply.ReferenceHub.Mode != ClientInstanceMode.Unverified &&
                         ply.ReferenceHub.Mode != ClientInstanceMode.DedicatedServer && ply != null)
-                        ply.SendBroadcast(_text, (ushort)1.25, Broadcast.BroadcastFlags.Normal, true);
+                    {
+                        if (Lobby.Singleton.Config.UseHints)
+                            ply.SendHint(_text, 1.05f);
+                        else
+                            ply.SendBroadcast(_text, (ushort)1.25, Broadcast.BroadcastFlags.Normal, true);
+                    }
             }
             else
             {
