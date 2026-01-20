@@ -44,28 +44,28 @@ public class RemoveLocationCommand : ICommand
         switch (arguments.At(0))
         {
             case "room":
-                if (Lobby.Instance.Config.CustomRoomLocations == null ||
-                    Lobby.Instance.Config.CustomRoomLocations?.Count - 1 < index)
+                if (Lobby.Singleton.Config.CustomRoomLocations == null ||
+                    Lobby.Singleton.Config.CustomRoomLocations?.Count - 1 < index)
                 {
                     response = $"Custom location at index {index} was not found.";
                     return false;
                 }
 
-                Lobby.Instance.Config.CustomRoomLocations.RemoveAt(index);
-                Lobby.Instance.SaveConfig();
+                Lobby.Singleton.Config.CustomRoomLocations.RemoveAt(index);
+                Lobby.Singleton.SaveConfig();
 
                 response = $"Custom location at index {index} has been removed.";
                 return true;
             case "static":
-                if (Lobby.Instance.Config.CustomLocations == null ||
-                    Lobby.Instance.Config.CustomLocations?.Count - 1 < index)
+                if (Lobby.Singleton.Config.CustomLocations == null ||
+                    Lobby.Singleton.Config.CustomLocations?.Count - 1 < index)
                 {
                     response = $"Custom location at index {index} was not found.";
                     return false;
                 }
 
-                Lobby.Instance.Config.CustomLocations.RemoveAt(index);
-                Lobby.Instance.SaveConfig();
+                Lobby.Singleton.Config.CustomLocations.RemoveAt(index);
+                Lobby.Singleton.SaveConfig();
 
                 response = $"Custom location at index {index} has been removed.";
                 return true;

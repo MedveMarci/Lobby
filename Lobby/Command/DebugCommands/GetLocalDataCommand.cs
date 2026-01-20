@@ -42,13 +42,13 @@ public class GetLocalDataCommand : ICommand
             return false;
         }
 
-        var Point = new GameObject("Point");
-        Point.transform.position = playerSender.Position;
-        Point.transform.rotation = playerSender.Rotation;
-        Point.transform.SetParent(playerSender.Room.Transform);
+        var point = new GameObject("Point");
+        point.transform.position = playerSender.Position;
+        point.transform.rotation = playerSender.Rotation;
+        point.transform.SetParent(playerSender.Room.Transform);
 
         response =
-            $"Room name {playerSender.Room.GameObject.name}; Local position: {Point.transform.localPosition.ToString()}; Local Rotation: {Point.transform.localEulerAngles.ToString()}.";
+            $"Room name {playerSender.Room.GameObject.name}; Local position: {point.transform.localPosition.ToString()}; Local Rotation: {point.transform.localEulerAngles.ToString()}.";
         return true;
     }
 }

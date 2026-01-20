@@ -45,22 +45,22 @@ public class AddLocationCommand : ICommand
         switch (arguments.At(0))
         {
             case "room":
-                var Point = new GameObject("Point");
-                Point.transform.position = playerSender.Position;
-                Point.transform.rotation = playerSender.Rotation;
-                Point.transform.SetParent(playerSender.Room.Transform);
+                var point = new GameObject("Point");
+                point.transform.position = playerSender.Position;
+                point.transform.rotation = playerSender.Rotation;
+                point.transform.SetParent(playerSender.Room.Transform);
 
                 var roomLocationData = new CustomRoomLocationData();
                 roomLocationData.RoomNameType = playerSender.Room.GameObject.name;
-                roomLocationData.OffsetX = Point.transform.localPosition.x;
-                roomLocationData.OffsetY = Point.transform.localPosition.y + 0.05f;
-                roomLocationData.OffsetZ = Point.transform.localPosition.z;
-                roomLocationData.RotationX = Point.transform.localEulerAngles.x;
-                roomLocationData.RotationY = Point.transform.localEulerAngles.y;
-                roomLocationData.RotationZ = Point.transform.localEulerAngles.z;
+                roomLocationData.OffsetX = point.transform.localPosition.x;
+                roomLocationData.OffsetY = point.transform.localPosition.y + 0.05f;
+                roomLocationData.OffsetZ = point.transform.localPosition.z;
+                roomLocationData.RotationX = point.transform.localEulerAngles.x;
+                roomLocationData.RotationY = point.transform.localEulerAngles.y;
+                roomLocationData.RotationZ = point.transform.localEulerAngles.z;
 
-                Lobby.Instance.Config.CustomRoomLocations.Add(roomLocationData);
-                Lobby.Instance.SaveConfig();
+                Lobby.Singleton.Config.CustomRoomLocations.Add(roomLocationData);
+                Lobby.Singleton.SaveConfig();
                 response = "New custom location added to the config.";
                 return true;
             case "static":
@@ -72,8 +72,8 @@ public class AddLocationCommand : ICommand
                 locationData.RotationY = playerSender.Rotation.y;
                 locationData.RotationZ = playerSender.Rotation.z;
 
-                Lobby.Instance.Config.CustomLocations.Add(locationData);
-                Lobby.Instance.SaveConfig();
+                Lobby.Singleton.Config.CustomLocations.Add(locationData);
+                Lobby.Singleton.SaveConfig();
                 response = "New custom location added to the config.";
                 return true;
             default:

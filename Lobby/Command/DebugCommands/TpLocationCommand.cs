@@ -44,57 +44,57 @@ public class TpLocationCommand : ICommand
             return false;
         }
 
-        var Point = new GameObject("Point");
+        var point = new GameObject("Point");
 
         switch (arguments.At(0))
         {
             case "room":
-                if (Lobby.Instance.Config.CustomRoomLocations == null ||
-                    Lobby.Instance.Config.CustomRoomLocations?.Count - 1 < index)
+                if (Lobby.Singleton.Config.CustomRoomLocations == null ||
+                    Lobby.Singleton.Config.CustomRoomLocations?.Count - 1 < index)
                 {
                     response = $"Custom location at index {index} was not found.";
                     return false;
                 }
 
-                if (Enum.TryParse(Lobby.Instance.Config.CustomRoomLocations[index].RoomNameType,
+                if (Enum.TryParse(Lobby.Singleton.Config.CustomRoomLocations[index].RoomNameType,
                         out RoomName roomName))
-                    Point.transform.SetParent(RoomIdentifier.AllRoomIdentifiers.First(x => x.Name == roomName)
+                    point.transform.SetParent(RoomIdentifier.AllRoomIdentifiers.First(x => x.Name == roomName)
                         .transform);
                 else if (RoomIdentifier.AllRoomIdentifiers.Count(x =>
-                             x.name.Contains(Lobby.Instance.Config.CustomRoomLocations[index].RoomNameType)) > 0)
-                    Point.transform.SetParent(RoomIdentifier.AllRoomIdentifiers.First(x =>
-                        x.name.Contains(Lobby.Instance.Config.CustomRoomLocations[index].RoomNameType)).transform);
+                             x.name.Contains(Lobby.Singleton.Config.CustomRoomLocations[index].RoomNameType)) > 0)
+                    point.transform.SetParent(RoomIdentifier.AllRoomIdentifiers.First(x =>
+                        x.name.Contains(Lobby.Singleton.Config.CustomRoomLocations[index].RoomNameType)).transform);
 
-                Point.transform.localPosition =
-                    new Vector3(Lobby.Instance.Config.CustomRoomLocations[index].OffsetX,
-                        Lobby.Instance.Config.CustomRoomLocations[index].OffsetY,
-                        Lobby.Instance.Config.CustomRoomLocations[index].OffsetZ);
-                Point.transform.localEulerAngles = new Vector3(
-                    Lobby.Instance.Config.CustomRoomLocations[index].RotationX,
-                    Lobby.Instance.Config.CustomRoomLocations[index].RotationY,
-                    Lobby.Instance.Config.CustomRoomLocations[index].RotationZ);
+                point.transform.localPosition =
+                    new Vector3(Lobby.Singleton.Config.CustomRoomLocations[index].OffsetX,
+                        Lobby.Singleton.Config.CustomRoomLocations[index].OffsetY,
+                        Lobby.Singleton.Config.CustomRoomLocations[index].OffsetZ);
+                point.transform.localEulerAngles = new Vector3(
+                    Lobby.Singleton.Config.CustomRoomLocations[index].RotationX,
+                    Lobby.Singleton.Config.CustomRoomLocations[index].RotationY,
+                    Lobby.Singleton.Config.CustomRoomLocations[index].RotationZ);
 
-                playerSender.Position = Point.transform.position;
-                playerSender.Rotation = Point.transform.rotation;
+                playerSender.Position = point.transform.position;
+                playerSender.Rotation = point.transform.rotation;
 
-                GameObject.Destroy(Point);
+                GameObject.Destroy(point);
 
                 response = $"You have successfully teleported to a custom location at index {index}.";
                 return true;
             case "static":
-                if (Lobby.Instance.Config.CustomLocations == null ||
-                    Lobby.Instance.Config.CustomLocations?.Count - 1 < index)
+                if (Lobby.Singleton.Config.CustomLocations == null ||
+                    Lobby.Singleton.Config.CustomLocations?.Count - 1 < index)
                 {
                     response = $"Custom location at index {index} was not found.";
                     return false;
                 }
 
-                playerSender.Position = new Vector3(Lobby.Instance.Config.CustomLocations[index].PositionX,
-                    Lobby.Instance.Config.CustomLocations[index].PositionY,
-                    Lobby.Instance.Config.CustomLocations[index].PositionZ);
-                playerSender.Rotation = Quaternion.Euler(Lobby.Instance.Config.CustomLocations[index].RotationX,
-                    Lobby.Instance.Config.CustomLocations[index].RotationY,
-                    Lobby.Instance.Config.CustomLocations[index].RotationZ);
+                playerSender.Position = new Vector3(Lobby.Singleton.Config.CustomLocations[index].PositionX,
+                    Lobby.Singleton.Config.CustomLocations[index].PositionY,
+                    Lobby.Singleton.Config.CustomLocations[index].PositionZ);
+                playerSender.Rotation = Quaternion.Euler(Lobby.Singleton.Config.CustomLocations[index].RotationX,
+                    Lobby.Singleton.Config.CustomLocations[index].RotationY,
+                    Lobby.Singleton.Config.CustomLocations[index].RotationZ);
 
                 response = $"You have successfully teleported to a custom location at index {index}.";
                 return true;

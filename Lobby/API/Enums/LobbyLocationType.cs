@@ -2,12 +2,12 @@
 
 public enum LobbyLocationType
 {
-    Tower_1,
-    Tower_2,
-    Tower_3,
-    Tower_4,
-    Tower_5,
+    Tower1,
+    Tower2,
+    Tower3,
+    Tower4,
+    Tower5,
     Intercom,
-    GR18,
-    SCP173
+    Gr18,
+    Scp173
 }

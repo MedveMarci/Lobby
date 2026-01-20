@@ -8,7 +8,7 @@ public class StaminaUsageMultiplierPatch
 {
     private static void Postfix(Inventory __instance, ref float __result)
     {
-        if (Lobby.Instance.Config.InfinityStamina && EventsHandler.IsLobby)
+        if (Lobby.Singleton.Config.InfinityStamina && EventsHandler.IsLobby)
             __result = 0;
     }
 }

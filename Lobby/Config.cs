@@ -9,7 +9,7 @@ public class Config
 {
     [Description("Enable debug messages in the server console?")]
     public bool Debug { get; set; } = false;
-    
+
     [Description(
         "Main text ({seconds} - Either it shows how much is left until the start, or the server status is \"Server is suspended\", \"Round starting\", <rainbow> - Change the next text a rainbow color, </rainbow> - Close a rainbow color tag)")]
     public string TitleText { get; set; } = "<color=#F0FF00><b>Waiting for players, {seconds}</b></color>";
@@ -78,20 +78,20 @@ public class Config
         "In what locations can people spawn? (If this parameter is empty, one of the custom locations (or custom room locations) will be selected)")]
     public List<LobbyLocationType> LobbyLocation { get; set; } =
     [
-        LobbyLocationType.Tower_1,
-        LobbyLocationType.Tower_2,
-        LobbyLocationType.Tower_3,
-        LobbyLocationType.Tower_4,
-        LobbyLocationType.Tower_5,
+        LobbyLocationType.Tower1,
+        LobbyLocationType.Tower2,
+        LobbyLocationType.Tower3,
+        LobbyLocationType.Tower4,
+        LobbyLocationType.Tower5,
         LobbyLocationType.Intercom,
-        LobbyLocationType.GR18,
-        LobbyLocationType.SCP173
+        LobbyLocationType.Gr18,
+        LobbyLocationType.Scp173
     ];
 
     [Description("This option is for a custom lobby location")]
     public List<CustomRoomLocationData> CustomRoomLocations { get; set; } =
     [
-        new CustomRoomLocationData
+        new()
         {
             RoomNameType = nameof(RoomName.EzGateA),
             OffsetX = 0,
@@ -106,7 +106,7 @@ public class Config
     [Description("This option is for a custom lobby location")]
     public List<CustomLocationData> CustomLocations { get; set; } =
     [
-        new CustomLocationData
+        new()
         {
             PositionX = 39.262f,
             PositionY = 315f,

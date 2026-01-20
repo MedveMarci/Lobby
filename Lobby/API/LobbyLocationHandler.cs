@@ -14,7 +14,7 @@ public static class LobbyLocationHandler
         new()
         {
             {
-                LobbyLocationType.Tower_1,
+                LobbyLocationType.Tower1,
                 new CustomRoomLocationData
                 {
                     RoomNameType = nameof(RoomName.Outside), OffsetX = 162.893f, OffsetY = 20f,
@@ -22,7 +22,7 @@ public static class LobbyLocationHandler
                 }
             },
             {
-                LobbyLocationType.Tower_2,
+                LobbyLocationType.Tower2,
                 new CustomRoomLocationData
                 {
                     RoomNameType = nameof(RoomName.Outside), OffsetX = 108.03f, OffsetY = 15f, OffsetZ = -13.71f,
@@ -30,7 +30,7 @@ public static class LobbyLocationHandler
                 }
             },
             {
-                LobbyLocationType.Tower_3,
+                LobbyLocationType.Tower3,
                 new CustomRoomLocationData
                 {
                     RoomNameType = nameof(RoomName.Outside), OffsetX = 39.12f, OffsetY = 15f, OffsetZ = -32f,
@@ -38,7 +38,7 @@ public static class LobbyLocationHandler
                 }
             },
             {
-                LobbyLocationType.Tower_4,
+                LobbyLocationType.Tower4,
                 new CustomRoomLocationData
                 {
                     RoomNameType = nameof(RoomName.Outside), OffsetX = -15.854f, OffsetY = 15f,
@@ -46,7 +46,7 @@ public static class LobbyLocationHandler
                 }
             },
             {
-                LobbyLocationType.Tower_5,
+                LobbyLocationType.Tower5,
                 new CustomRoomLocationData
                 {
                     RoomNameType = nameof(RoomName.Outside), OffsetX = 130.43f, OffsetY = -5.6f, OffsetZ = 21f,
@@ -62,7 +62,7 @@ public static class LobbyLocationHandler
                 }
             },
             {
-                LobbyLocationType.GR18,
+                LobbyLocationType.Gr18,
                 new CustomRoomLocationData
                 {
                     RoomNameType = nameof(RoomName.LczGlassroom), OffsetX = 4.8f, OffsetY = 1f, OffsetZ = 2.3f,
@@ -70,7 +70,7 @@ public static class LobbyLocationHandler
                 }
             },
             {
-                LobbyLocationType.SCP173,
+                LobbyLocationType.Scp173,
                 new CustomRoomLocationData
                 {
                     RoomNameType = nameof(RoomName.Lcz173), OffsetX = 17f, OffsetY = 13f, OffsetZ = 8f,
@@ -83,11 +83,11 @@ public static class LobbyLocationHandler
     {
         if (locationData is CustomRoomLocationData customRoomLocation)
         {
-            RoomIdentifier Room;
+            RoomIdentifier room;
 
             if (Enum.TryParse(customRoomLocation.RoomNameType, out RoomName roomName))
             {
-                Room = RoomIdentifier.AllRoomIdentifiers.First(x => x.Name == roomName);
+                room = RoomIdentifier.AllRoomIdentifiers.First(x => x.Name == roomName);
 
                 if (customRoomLocation.RoomNameType == nameof(RoomName.EzIntercom))
                     EventsHandler.IsIntercom = true;
@@ -95,17 +95,17 @@ public static class LobbyLocationHandler
             else if (RoomIdentifier.AllRoomIdentifiers.Count(x =>
                          x.name.Contains(customRoomLocation.RoomNameType)) > 0)
             {
-                Room =
+                room =
                     RoomIdentifier.AllRoomIdentifiers.First(x => x.name.Contains(customRoomLocation.RoomNameType));
             }
             else
             {
-                customRoomLocation = (CustomRoomLocationData)LocationDatas[LobbyLocationType.GR18];
-                Room = RoomIdentifier.AllRoomIdentifiers.First(x =>
+                customRoomLocation = (CustomRoomLocationData)LocationDatas[LobbyLocationType.Gr18];
+                room = RoomIdentifier.AllRoomIdentifiers.First(x =>
                     x.Name == ParseEnum<RoomName>(customRoomLocation.RoomNameType));
             }
 
-            Point.transform.SetParent(Room.transform);
+            Point.transform.SetParent(room.transform);
             Point.transform.localPosition = new Vector3(customRoomLocation.OffsetX, customRoomLocation.OffsetY,
                 customRoomLocation.OffsetZ);
             Point.transform.localRotation = Quaternion.Euler(customRoomLocation.RotationX,

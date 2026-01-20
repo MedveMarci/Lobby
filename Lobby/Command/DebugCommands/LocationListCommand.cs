@@ -41,24 +41,24 @@ public class LocationListCommand : ICommand
         {
             case "all":
                 resString += "Room locations:\n";
-                if (Lobby.Instance.Config.CustomRoomLocations?.Count > 0)
-                    foreach (var item in Lobby.Instance.Config.CustomRoomLocations)
+                if (Lobby.Singleton.Config.CustomRoomLocations?.Count > 0)
+                    foreach (var item in Lobby.Singleton.Config.CustomRoomLocations)
                         resString += item.RoomNameType + " " +
                                      $"({item.OffsetX}, {item.OffsetY}, {item.OffsetZ})\n";
 
                 resString += "\nStatic locations:\n";
-                if (Lobby.Instance.Config.CustomLocations?.Count > 0)
-                    foreach (var item in Lobby.Instance.Config.CustomLocations)
+                if (Lobby.Singleton.Config.CustomLocations?.Count > 0)
+                    foreach (var item in Lobby.Singleton.Config.CustomLocations)
                         resString += $"({item.PositionX}, {item.PositionY}, {item.PositionZ})\n";
 
                 response = resString;
                 return true;
             case "room":
                 resString += "Room locations:\n";
-                if (Lobby.Instance.Config.CustomRoomLocations?.Count > 0)
-                    for (var i = 0; i < Lobby.Instance.Config.CustomRoomLocations.Count; i++)
+                if (Lobby.Singleton.Config.CustomRoomLocations?.Count > 0)
+                    for (var i = 0; i < Lobby.Singleton.Config.CustomRoomLocations.Count; i++)
                     {
-                        var data = Lobby.Instance.Config.CustomRoomLocations[i];
+                        var data = Lobby.Singleton.Config.CustomRoomLocations[i];
                         resString += $"({i}) " + data.RoomNameType + " " +
                                      $"({data.OffsetX}, {data.OffsetY}, {data.OffsetZ})\n";
                     }
@@ -67,10 +67,10 @@ public class LocationListCommand : ICommand
                 return true;
             case "static":
                 resString += "Static locations:\n";
-                if (Lobby.Instance.Config.CustomLocations?.Count > 0)
-                    for (var i = 0; i < Lobby.Instance.Config.CustomLocations.Count; i++)
+                if (Lobby.Singleton.Config.CustomLocations?.Count > 0)
+                    for (var i = 0; i < Lobby.Singleton.Config.CustomLocations.Count; i++)
                     {
-                        var data = Lobby.Instance.Config.CustomLocations[i];
+                        var data = Lobby.Singleton.Config.CustomLocations[i];
                         resString += $"({i}) " + $"({data.PositionX}, {data.PositionY}, {data.PositionZ})\n";
                     }
 

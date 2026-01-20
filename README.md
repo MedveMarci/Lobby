@@ -1,4 +1,5 @@
 # Lobby
+
 [![Version](https://img.shields.io/github/v/release/MedveMarci/Lobby?sort=semver&label=Version)](https://github.com/MedveMarci/Lobby/releases)
 [![Downloads](https://img.shields.io/github/downloads/MedveMarci/Lobby/total?label=Downloads)](https://github.com/MedveMarci/Lobby/releases)
 <a href="https://github.com/KenleyundLeon/DeltaPatch"><img src="https://image2url.com/images/1759565889245-ff2e02c2-1f19-4f72-bc06-43a3b77fb4bd.png"></a>
@@ -8,20 +9,25 @@ An SCP: Secret Laboratory plugin which adds a lobby when waiting for players.
 The idea was inspired from this [plugin](https://github.com/Michal78900/WaitAndChillReborn).
 
 Original plugin: https://github.com/MrAfitol/Lobby/
+
 ## How to download?
-   - *1. Find the SCP SL server config folder*
-   
-   *("C:\Users\(user name)\AppData\Roaming\SCP Secret Laboratory\" for windows, "/home/(user name)/.config/SCP Secret Laboratory/" for Linux)*
-  
-   - *2. Find the "PluginAPI" folder there, it contains the "plugins" folder.*
-  
-   - *3. Select either the port of your server to install the same on that server or the "global" folder to install the plugin for all servers*
-  
+
+- *1. Find the SCP SL server config folder*
+
+*("C:\Users\(user name)\AppData\Roaming\SCP Secret Laboratory\" for windows, "/home/(user name)/.config/SCP Secret
+Laboratory/" for Linux)*
+
+- *2. Find the "LabApi" folder there, it contains the "plugins" folder.*
+
+- *3. Select either the port of your server to install the same on that server or the "global" folder to install the
+  plugin for all servers*
+
 ## View
+
 https://user-images.githubusercontent.com/76150070/208076431-7e7a98e3-d1b3-4365-a989-a09e7fa7f639.mp4
 
-
 ## Config
+
 ```yml
 # Main text ({seconds} - Either it shows how much is left until the start, or the server status is "Server is suspended", "Round starting", <rainbow> - Change the next text a rainbow color, </rainbow> - Close a rainbow color tag)
 title_text: <color=#F0FF00><b>Waiting for players, {seconds}</b></color>
@@ -102,4 +108,5 @@ allowed_user_i_d:
 ```
 
 ## Wiki
-**Be sure to check out the [Wiki](https://github.com/MrAfitol/Lobby/wiki)**
+
+**Be sure to check out the [Wiki](https://github.com/MedveMarci/Lobby/wiki)**

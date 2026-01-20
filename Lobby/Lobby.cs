@@ -8,7 +8,7 @@ namespace Lobby;
 
 public class Lobby : Plugin<Config>
 {
-    public static Lobby Instance { get; private set; }
+    public static Lobby Singleton { get; private set; }
 
     public override string Name => "Lobby";
 
@@ -16,7 +16,7 @@ public class Lobby : Plugin<Config>
 
     public override string Author => "MrAfitol & MedveMarci";
 
-    public override Version Version { get; } = new(1, 0, 1);
+    public override Version Version { get; } = new(1, 0, 2);
 
     public override Version RequiredApiVersion { get; } = new(LabApiProperties.CompiledVersion);
 
@@ -27,7 +27,7 @@ public class Lobby : Plugin<Config>
 
     public override void Enable()
     {
-        Instance = this;
+        Singleton = this;
         Harmony = new Harmony("lobby.scp.sl");
         EventsHandler = new EventsHandler();
         RestrictionsHandler = new RestrictionsHandler();
@@ -43,6 +43,6 @@ public class Lobby : Plugin<Config>
         RestrictionsHandler = null;
         EventsHandler = null;
         Harmony = null;
-        Instance = null;
+        Singleton = null;
     }
 }

@@ -38,6 +38,6 @@ public class RestrictionsHandler
 
     public void OnPlayerUsingIntercom(PlayerUsingIntercomEventArgs ev)
     {
-        ev.IsAllowed = IsLobby && !Lobby.Instance.Config.AllowIcom ? false : true;
+        ev.IsAllowed = IsLobby && !Lobby.Singleton.Config.AllowIcom ? false : true;
     }
 }
