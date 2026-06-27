@@ -38,9 +38,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Reference Include="UncomplicatedCustomRoles" HintPath="$(LABAPI_PLUGINS)\UncomplicatedCustomRoles-LabAPI.dll"/>
-        <Reference Include="RoleAPI" HintPath="$(LABAPI_DEPENDENCIES)\RoleAPI.dll"/>
-        <Reference Include="SecretLabNAudio.Core" HintPath="$(LABAPI_PLUGINS)\SecretLabNAudio.Core.dll"/>
         <Reference Include="Assembly-CSharp" HintPath="$(SL_REFERENCES)\Assembly-CSharp.dll" Publicize="true"/>
         <Reference Include="Assembly-CSharp-firstpass" HintPath="$(SL_REFERENCES)\Assembly-CSharp-firstpass.dll"/>
         <Reference Include="UnityEngine.CoreModule" HintPath="$(SL_REFERENCES)\UnityEngine.CoreModule.dll"/>
@@ -59,5 +56,4 @@
     <Target Name="PostBuild" AfterTargets="PostBuildEvent">
         <Exec Command="xcopy &quot;$(TargetPath)&quot; &quot;%appdata%\SCP Secret Laboratory\LabAPI\plugins\global&quot; /y"/>
     </Target>
-
 </Project>
