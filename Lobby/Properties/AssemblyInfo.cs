@@ -7,9 +7,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Lobby")]
 [assembly: AssemblyDescription("A plugin that adds a lobby when waiting for players.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("MrAfitol")]
+[assembly: AssemblyCompany("MedveMarci")]
 [assembly: AssemblyProduct("Lobby")]
-[assembly: AssemblyCopyright("Copyright © MrAfitol 2022")]
+[assembly: AssemblyCopyright("Copyright © MedveMarci 2026")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -31,5 +31,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.6.2.0")]
-[assembly: AssemblyFileVersion("1.6.2.0")]
+[assembly: AssemblyVersion("1.0.3")]
+[assembly: AssemblyFileVersion("1.0.3")]

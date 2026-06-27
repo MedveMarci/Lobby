@@ -12,7 +12,7 @@ public class Config
 
     [Description("Use hints instead of broadcast?")]
     public bool UseHints { get; set; } = false;
-    
+
     [Description(
         "Main text ({seconds} - Either it shows how much is left until the start, or the server status is \"Server is suspended\", \"Round starting\", <rainbow> - Change the next text a rainbow color, </rainbow> - Close a rainbow color tag)")]
     public string TitleText { get; set; } = "<color=#F0FF00><b>Waiting for players, {seconds}</b></color>";

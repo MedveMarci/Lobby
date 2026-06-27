@@ -30,7 +30,7 @@ public class EventsHandler
 
     public void OnWaitingForPlayers()
     {
-        ApiManager.CheckForUpdates();
+        VersionManager.CheckForUpdates();
         try
         {
             LogManager.Debug("OnWaitingForPlayers event triggered.");
