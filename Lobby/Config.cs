@@ -58,6 +58,9 @@ public class Config
     [Description("What is the movement boost intensity? (Max 255)")]
     public byte MovementBoostIntensity { get; set; } = 50;
 
+    [Description("If true, removes the movement boost effect from all players 0.1s after the round starts. Though this might not be necessary, it's better safe than sorry!")]
+    public bool EnsureMovementBoostRemovedOnRoundStart { get; set; } = true;
+
     [Description("Will infinity stamina be enabled for people in the lobby?")]
     public bool InfinityStamina { get; set; } = true;
 

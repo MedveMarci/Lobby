@@ -118,7 +118,8 @@ public class EventsHandler
                 Timing.CallDelayed(0.1f, () =>
                 {
                     player.IsGodModeEnabled = false;
-                    if (Lobby.Singleton.Config.EnableMovementBoost) player.DisableEffect<MovementBoost>();
+                    if (Lobby.Singleton.Config.EnableMovementBoost && Lobby.Singleton.Config.EnsureMovementBoostRemovedOnRoundStart)
+                        player.DisableEffect<MovementBoost>();
                 });
             }
 
